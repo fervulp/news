@@ -4,7 +4,8 @@
 * Open project
 * Write `docker-compose up -d`
 
-# About services
+# About application
+Application for reading and creating articles - a news site with the possibility of authorization
 * backend - frontend (django) - localhost:8080
 
 ### For Django Admin
