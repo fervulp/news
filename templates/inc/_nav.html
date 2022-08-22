@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    <div class="container-fluid">
+    {% comment %} <a class="navbar-brand" href="#">Новостной сайт</a> {% endcomment %}
+        <div class="collapse navbar-collapse" id="navbarText">
+            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                <li class="nav-item">
+                    <a class="nav-link active mr-5" aria-current="page" href="{% url 'home' %}">Главная</a>
+                </li>
+
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link mr-5" href="{% url 'add_news' %}">Добавить новость</a>
+                    </li>
+
+                    {%  if request.user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link mr-5" href="/admin">Админка</a>
+                        </li>
+                    {% endif %}
+                    
+                {% endif %}
+            </ul>
+
+        </div>
+
+        {% if request.user.is_authenticated %}
+        
+            <b>{{ user.username }}</b>
+            <form action="{% url 'logout' %}">
+                <button class="btn btn-outline-secondary mr-2 ml-4">Выйти</button>
+            </form>
+            
+        {% else %}
+            <form action="{% url 'login' %}">
+                <button class="btn btn-outline-primary mr-2">Войти</button>
+            </form>
+            
+            <form action="{% url 'register' %}">
+                <button class="btn btn-outline-secondary mr-2">Зарегистрироваться</button>
+            </form>
+        {% endif %}
+  </div>
+    
+</nav>

@@ -1,0 +1,23 @@
+/* p.card-text {
+    text-align: justify;
+} */
+/* div.card-body p {
+    text-align: justify;
+} */
+
+
+ul.nav {
+    background-color: #FEFEFE;
+}
+
+ul.errorlist {
+    color: red;
+}
+
+ul.errorlist li {
+    list-style-type: none;
+}
+
+ul.errorlist li:before{
+    content: "* ";
+}

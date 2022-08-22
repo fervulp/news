@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block side_wrapper %}{% endblock side_wrapper %}
+
+{% block content_wrapper %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+
+            <div class="col-4">
+                <h1 class='text-center mb-4'>{{title}}</h1>
+
+                <form action="{% url 'login' %}" method='post'>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class='btn btn-primary btn-block'>Войти</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+{% endblock content_wrapper %}

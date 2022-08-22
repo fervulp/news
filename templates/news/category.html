@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block sidebar %}
+    {% include "inc/_sidebar.html" %}
+{% endblock sidebar %}
+
+
+{% block content %}
+        {% for item in news %}
+        <div class="card mb-5">
+            <div class="card-header">Категория: {{item.category}}</div>
+            <div class="card-body">
+                {% if item.photo %}
+                        <img class="mr-3 float-left" src="{{ item.photo.url }}" alt="" width="350">
+                {% endif %}
+                    <h4 class="card-title"><b>{{ item.title }}</b></h4>
+                    <p class="card-text">{{ item.content|safe|linebreaks|truncatewords:150  }}</p>
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read More...</a>
+            </div>
+            <div class="card-footer text-end text-muted">
+                Дата публикации {{ item.created_at| date:"Y-m-d H:i:s" }}
+            </div>
+
+        </div>
+        {% empty %}
+        <div class="jumbotron jumbotron-fluid mt-5">
+            <div class="container">
+                <h1 class="display-4 text-center">Информация не найдено</h1>
+            </div>
+        </div>
+        {% endfor %}
+{% endblock content %}

@@ -1,0 +1,112 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+        <script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+        
+        <title>{% block title %}{{title}}{% endblock title %}</title>
+        
+
+    </head>
+    <body>
+        <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
+        <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+
+        {% include 'inc/_nav.html' %}
+        
+
+        <div class="container mt-3">
+            <div class="row">
+
+                {% block side_wrapper %}
+                    <div class="col-md-2">
+                        {% block sidebar %}
+                        {% endblock sidebar %}
+                    </div>
+                {% endblock side_wrapper %}
+
+
+                {% if messages %}
+                
+                    {% for message in messages %}
+
+                        {% if  message.tags == 'error' %}
+                            <div class="alert alert-danger col-12" role="alert">{{message}}</div>
+                        {% else %}
+                            <div class="alert alert-{{message.tags}} col-12" role="alert">{{message}}</div>
+                        {% endif %}
+
+                    {% endfor %}
+                {% endif %}
+
+
+
+                {% block content_wrapper %}
+                    <div class="col-md-8">
+
+                    {% block content %}{% endblock content%}
+
+
+                    {% if  page_obj.has_other_pages %}
+                        <div class="row justify-content-center">
+
+                            <ul class="pagination">
+
+                                {% if page_obj.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                
+                                {% for p in  page_obj.paginator.page_range %}
+
+                                    {% if page_obj.number == p %}
+
+                                        <li class="page-item active" aria-current="page">
+                                            <a class="page-link" href="#">{{p}}</a>
+                                        </li>
+
+                                    {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="?page={{ p }}">{{p}}</a>
+                                        </li>
+
+                                    {% endif %}
+                                    
+                                {% endfor %}
+
+                                {% if page_obj.has_next %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ page_obj.next_page_number }}" aria-label="Next">
+                                            <span aria-hidden="true">&raquo;</span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                                
+
+                            </ul>
+                        </div>
+                    {% endif %}
+                    
+
+
+                </div>
+                {% endblock content_wrapper %}
+                
+            </div>  
+        </div>
+    </body>
+</html>

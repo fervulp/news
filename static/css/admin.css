@@ -1,0 +1,29 @@
+#header{
+    background-color: #90a4ae;
+    color: white;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: white;
+}
+
+.module caption, .inline-group h2 {
+    background-color: #90a4ae;
+}
+
+div.breadcrumbs {
+    background-color: #90a4ae;
+    color: white;
+}
+
+#nav-sidebar .current-app .section:link, #nav-sidebar .current-app .section:visited {
+    color: white;
+}
+
+tr.model-category current-model {
+    background-color: white;
+}
+
+#nav-sidebar .current-model {
+    background-color: #eceff1
+}
