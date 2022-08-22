@@ -6,7 +6,7 @@
 
 # About application
 Application for reading and creating articles - a news site with the possibility of authorization
-* backend - frontend (django) - localhost:8080
+* backend - frontend (django) - localhost:8000
 
 ### For Django Admin
 * username - admin
